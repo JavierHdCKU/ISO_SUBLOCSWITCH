@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this software or its results, please cite it as below."
+title: "ISO_SUBLOCSWITCH: pan-cancer subcellular-localization isoform switching"
+abstract: >-
+  A pipeline that tests whether tumours rewire receptor accessibility via
+  alternative splicing, redistributing a gene's transcript output between
+  transmembrane/cell-surface (TM), secreted (Sec) and intracellular (Int)
+  compartments relative to matched normal tissue. Isoforms are assigned to
+  compartments with DeepLoc 2.1, switches are called per cancer with satuRn on
+  per-gene localization buckets, and results are aggregated across 14 TCGA
+  cancer types for cross-cancer recurrence analysis.
+type: software
+authors:
+  - family-names: Herranz
+    given-names: Javier
+keywords:
+  - alternative splicing
+  - isoform switching
+  - subcellular localization
+  - immune escape
+  - pan-cancer
+  - TCGA
+  - satuRn
+  - differential transcript usage
+license: MIT

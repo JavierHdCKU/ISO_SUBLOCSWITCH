@@ -1,0 +1,70 @@
+# =============================================================================
+# sublocswitch: conda environment for ISO_SUBLOCSWITCH
+# -----------------------------------------------------------------------------
+# Reproduces the software stack used for the analysis in this repository.
+#     conda env create -f environment.yml     # mamba is much faster if available
+#     conda activate sublocswitch
+#
+# Versions are pinned to those recorded in the run manifests under
+# data/outputs/<cancer>/tier1/*_manifest.json, so a rebuilt environment matches
+# the one that produced the results:
+#
+#     R 4.5.3 · satuRn 1.18.0 · edgeR 4.8.2
+#     SummarizedExperiment 1.40.0 · data.table 1.17.8
+#
+# The package list covers exactly what the scripts in scripts/ load.
+#
+# EXTERNAL PREREQUISITES, not installable through conda:
+#   * DeepLoc 2.1  : subcellular-localization predictor, obtained from
+#                    https://services.healthtech.dtu.dk/services/DeepLoc-2.1/
+#                    and run in its own environment. Its output is distributed
+#                    as data/inputs/deeploc.csv, so DeepLoc is only needed to
+#                    regenerate that file, not to reproduce the analysis.
+#   * DeepTMHMM    : run in the cloud through the BioLib client (pybiolib, below);
+#                    needs outbound internet access. Used only for the per-gene
+#                    topology panels of the candidate figures.
+# =============================================================================
+name: sublocswitch
+
+channels:
+  - conda-forge
+  - bioconda
+
+dependencies:
+  # ── R ─────────────────────────────────────────────────────────────────────
+  - r-base=4.5.3
+
+  # ── Differential transcript usage ─────────────────────────────────────────
+  - bioconductor-saturn=1.18.0            # the DTU engine
+  - bioconductor-edger=4.8.2              # version recorded in the manifests
+  - bioconductor-summarizedexperiment=1.40.0
+  - bioconductor-biocparallel
+
+  # ── Data handling ─────────────────────────────────────────────────────────
+  - r-data.table=1.17.8
+  - r-jsonlite
+
+  # ── Figures ───────────────────────────────────────────────────────────────
+  - r-ggplot2
+  - r-patchwork
+  - r-ggrepel
+  - r-scales
+  - r-ragg                 
+  - r-systemfonts          
+  - fonts-conda-ecosystem
+  - fonts-conda-forge
+  - mafft=7.525
+  - python=3.11
+  - numpy
+  - pandas
+  - matplotlib
+  - cairo
+  - fontconfig
+  - freetype
+  - fribidi
+  - harfbuzz
+  - libxml2
+  - pkg-config
+  - pip
+  - pip:
+      - pybiolib==1.4.158

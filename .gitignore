@@ -1,0 +1,22 @@
+# Data (inputs, outputs, caches) is archived on Zenodo, NOT tracked in Git:
+# it is several GB and two files exceed GitHub's 100 MB per-file limit.
+# Only the pointer README under data/ is committed.
+data/*
+!data/README.md
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+Rplots.pdf
+
+# Editor / OS
+.DS_Store
+*~
+*.swp
+
+# Scratch / job logs
+*.tmp
+tmp/
+*.o[0-9]*
+*.e[0-9]*
